@@ -2,6 +2,12 @@ from django.db import models
 
 # Create your models here.
 
+class Style(models.Model):
+	SID = models.AutoField(primary_key = True)
+	SName = models.CharField(max_length = 100)
+	def __str__(self):
+		return self.SName
+
 class Song(models.Model):
 	SID = models.AutoField(primary_key = True)
 	SName = models.CharField(max_length = 100)
@@ -9,12 +15,7 @@ class Song(models.Model):
 	Composer = models.CharField(max_length = 100)
 	Tonality = models.CharField(max_length = 100)
 	Verion = models.CharField(max_length = 100)
-	def __str__(self):
-		return self.SName
-
-class Style(models.Model):
-	SID = models.AutoField(primary_key = True)
-	SName = models.CharField(max_length = 100)
+	Style = models.ManyToManyField(Style)
 	def __str__(self):
 		return self.SName
 
@@ -25,6 +26,8 @@ class Performance(models.Model):
 	Company = models.CharField(max_length = 100)
 	Venue = models.CharField(max_length = 100)
 	Equipment = models.CharField(max_length = 100)
+	Song = models.ManyToManyField(Song)
+	Style = models.ManyToManyField(Style)
 	def __str__(self):
 		return self.PName
 
@@ -36,6 +39,8 @@ class Vocalist(models.Model):
 	Vocal_Type = models.CharField(max_length = 100)
 	Language = models.CharField(max_length = 100)
 	Music_Training = models.CharField(max_length = 100)
+	Song = models.ManyToManyField(Song)
+	Style = models.ManyToManyField(Style)
 	def __str__(self):
 		return self.VName
 
@@ -45,5 +50,7 @@ class Instrumentalist(models.Model):
 	Gender = models.CharField(max_length = 100)
 	Instrument = models.CharField(max_length = 100)
 	Music_Training = models.CharField(max_length = 100)
+	Song = models.ManyToManyField(Song)
+	Style = models.ManyToManyField(Style)
 	def __str__(self):
 		return self.IName
