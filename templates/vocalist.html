@@ -2,8 +2,8 @@
 <html lang="en" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Singer Database</title>
 		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
 		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
@@ -33,13 +33,56 @@
 				</li>
 			</ul>
 			<header>
-				<h1>Singer Database</h1>	
-			</header> 
+				<h1>Vocalist</h1>
+				<h2>Search</h2>
+			     <form action="" method="get">
+						<input type="text" name="search">
+					</form>
+		<div>
+			<table>
+		  		<tr>
+		    		<th><h3>Vocalist</h3></th>
+		    		<th><h3>Gender</h3></th>
+		    		<th><h3>Range</h3></th>
+					  <th><h3>Type</h3></th>
+					  <th><h3>Language</h3></th>
+					  <th><h3>Music Training</h3></th>
+						<th><h3>Song</h3></th>
+						<th><h3>Style</h3></th>
+		  		</tr>
+					{% for voc in Voc_list %}
+		  		<tr>
+					<th>{{ voc.VName }}</th>
+					<th>{{ voc.Gender }}</th>
+					<th>{{ voc.Vocal_Range }}</th>
+					<th>{{ voc.Vocal_Type }}</th>
+					<th>{{ voc.Language }}</th>
+					<th>{{ voc.Music_Training }}</th>
+					<th>{% for song in voc.Song.all %}{{ song.SName }}</br>{% endfor %}</th>
+					<th>{% for style in voc.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+		  		</tr>
+
+				{% endfor %}
+			</table>
+		</div>
+			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
 		<script src="/static/js/gnmenu.js"></script>
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
+
+
+
+
+
+
+
+
+
+
+
+
 	</body>
 </html>

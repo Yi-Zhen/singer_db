@@ -83,7 +83,16 @@ def performance(request):
         return render(request, 'performance.html', {'Per_list': Per_list})
 
 def vocalist(request):
-    return render(request, 'vocalist.html')
+    Voc_list = Vocalist.objects.all()
+    if 'search' in request.GET:
+        q = request.GET['search']
+        S_Song_list = Vocalist.objects.filter(VName__icontains=q)|Vocalist.objects.filter(Gender__icontains=q)|Vocalist.objects.filter(Vocal_Range__icontains=q)|Vocalist.objects.filter(Vocal_Type__icontains=q)|Vocalist.objects.filter(Language__icontains=q)|Vocalist.objects.filter(Music_Training__icontains=q)
+        return render(request, 'vocalist.html', {'Voc_list': S_Song_list})
+
+    else:
+        return render(request, 'vocalist.html', {'Voc_list': Voc_list})
+
+    
 
 def instrumentalist(request):
     return render(request, 'instrumentalist.html')
