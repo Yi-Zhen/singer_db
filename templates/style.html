@@ -55,9 +55,47 @@
         <input type="submit" value="送出">
       </form>
 
+			<form action="" method="get">
+				<select onchange="this.form.submit()">
+					{% for style in Style_list %}
+		                <tr>
+		                    <td> <option name="id2" value="{{style.SID}}"> </td>
+		                    <td> {{ style.SName }} </td>
+		                </tr>
+		            {% endfor %}
+				</select>
+    		</form>
+
+			<form action="" method="get">
+				<input type="text" name="search">
+				<button type="submit">Search</button>
+			</form>
+
+			<form action="" method="get">
+            <table>
+                <tr>
+                    <td> <label for="song">歌曲名字: </label> </td>
+                    <td> <input type="text" id="song" type="text" name="song"> </td>
+                </tr>
+                <tr>
+                    <td> <label for="lan">語言: </label> </td>
+                    <td> <input type="text" id="lan" type="text" name="lan"> </td>
+                </tr>
+                <tr>
+                    <td> <label for="comp">作曲家: </label> </td>
+                    <td>
+                        <input type="text" id="comp" type="text" name="comp"></td>
+                </tr>
+            </table>
+            <input type="submit" value="送出">
+        </form>
+
 			{% for song in Song_list %}
 			    <div>
+					Song:
 			    {{ song.SName }}
+					<span>Composer:
+					{{ song.Composer }}
 
 			    </div>
 			{% endfor %}

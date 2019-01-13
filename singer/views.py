@@ -23,6 +23,15 @@ def style(request):
         F_Song_list = Style.objects.filter(SID=q)[0].song_set.all()
         return render(request, 'style.html', {'Song_list': F_Song_list, 'Style_list': Style_list})
 
+    elif 'search' in request.GET:
+        q = request.GET['search']
+        S_Song_list = Song.objects.filter(SName__icontains=q)|Song.objects.filter(Composer__icontains=q)
+        return render(request, 'style.html', {'Song_list': S_Song_list, 'Style_list': Style_list})
+
+    elif 'song' in request.GET:
+         Song.objects.create(SName=request.GET['song'], Language=request.GET['lan'], Composer=request.GET['comp'])
+         return render(request, 'style.html', {'Song_list': Song_list, 'Style_list': Style_list})
+
     else:
         return render(request, 'style.html', {'Song_list': Song_list, 'Style_list': Style_list})
 
