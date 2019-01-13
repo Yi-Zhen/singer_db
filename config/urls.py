@@ -15,9 +15,14 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from singer.views import home
+from singer.views import home, song, style, performance, vocalist, instrumentalist
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', home),
+    url(r'^song/', song),
+    url(r'^style/', style),
+    url(r'^performance/', performance),
+    url(r'^vocalist/', vocalist),
+    url(r'^instrumentalist/', instrumentalist),
 ]
