@@ -26,7 +26,6 @@ class Performance(models.Model):
 	Company = models.CharField(max_length = 100)
 	Venue = models.CharField(max_length = 100)
 	Equipment = models.CharField(max_length = 100)
-	Song = models.ManyToManyField(Song)
 	Style = models.ManyToManyField(Style)
 	def __str__(self):
 		return self.PName
