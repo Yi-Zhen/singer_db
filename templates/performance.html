@@ -33,7 +33,34 @@
 				</li>
 			</ul>
 			<header>
-				<h1>Singer Database</h1>
+				<h1>Performance</h1>
+				<h2>Search</h2>
+			        <form action="" method="get">
+						<input type="text" name="search">
+					</form>
+		<div>
+			<table>
+		  		<tr>
+		    		<th><h3>Performance</h3></th>
+		    		<th><h3>Date</h3></th>
+		    		<th><h3>Company</h3></th>
+					<th><h3>Venue</h3></th>
+					<th><h3>Equipment</h3></th>
+					<th><h3>Style</h3></th>
+		  		</tr>
+					{% for per in Per_list %}
+		  		<tr>
+					<th>{{ per.PName }}</th>
+					<th>{{ per.Date }}</th>
+					<th>{{ per.Company }}</th>
+					<th>{{ per.Venue }}</th>
+					<th>{{ per.Equipment }}</th>
+					<th>{% for style in per.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+		  		</tr>
+
+				{% endfor %}
+			</table>
+		</div>
 			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
@@ -41,61 +68,5 @@
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
-
-		<form action="" method="get">
-			<input type="text" name="search">
-			<button type="submit">Search</button>
-		</form>
-
-
-
-		<div>
-			<table>
-
-		  		<tr>
-			    		<th>Performance</th>
-			    		<th>Date</th>
-			    		<th>Company</th>
-							<th>Venue</th>
-							<th>Equipment</th>
-							<th>Style</th>
-		  		</tr>
-					{% for per in Per_list %}
-		  		<tr>
-						<th>{{ per.PName }}</th>
-						<th>{{ per.Date }}</th>
-						<th>{{ per.Company }}</th>
-						<th>{{ per.Venue }}</th>
-						<th>{{ per.Equipment }}</th>
-						<th>{% for style in per.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
-		  		</tr>
-
-				{% endfor %}
-			</table>
-
-
-
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</body>
 </html>
