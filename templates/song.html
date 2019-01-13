@@ -31,9 +31,44 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
+				<li><a href="/">Home</a></li>
+				<li></li>
 			</ul>
 			<header>
 				<h1>Song</h1>
+				<div>
+					<h2>Search</h2>
+			        <form action="" method="get">
+						<input type="text" name="song">
+					</form>
+				</div>
+		<div>
+			<table>
+				<br>
+		  		<tr>
+		    		<th><h3>Song</h3></th>
+		    		<th><h3>Language</h3></th>
+		    		<th><h3>Version</h3></th>
+					<th><h3>Composer</h3></th>
+					<th><h3>Key</h3></th>
+					<th><h3>Style</h3></th>
+					<th><h3>Vocalist</h3></th>
+					<th><h3>Instrumentalist</h3></th>
+		  		</tr>
+					{% for song in Song_list %}
+		  		<tr>
+					<th>{{ song.SName }}</th>
+					<th>{{ song.Language }}</th>
+					<th>{{ song.Verion }}</th>
+					<th>{{ song.Composer }}</th>
+					<th>{{ song.Key }}</th>
+					<th>{% for style in song.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+					<th>{% for style in song.vocalist_set.all %}{{ style.VName }}&nbsp&nbsp{% endfor %}</th>
+					<th>{% for style in song.instrumentalist_set.all %}{{ style.IName }}&nbsp&nbsp{% endfor %}</th>
+		  		</tr>
+				{% endfor %}
+			</table>
+		</div>
 			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
@@ -41,83 +76,5 @@
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
-
-		<div>
-			<form action="" method="get">
-            <table>
-                <tr>
-                    <td> <label for="song">搜尋: </label> </td>
-                    <td> <input type="text" id="song" type="text" name="song"> </td>
-                </tr>
-		            <tr>
-		                    <td> <input type="radio" name="lan" value="English"> </td>
-		                    <td> 英文 </td>
-												<td> <input type="radio" name="lan" value="Chinese"> </td>
-		                    <td> 中文 </td>
-												<td> <input type="radio" name="lan" value="台語"> </td>
-		                    <td> 台語 </td>
-		            </tr>
-								<tr>
-									{% for style in Style_list %}
-													<td> <input type="radio" name="style" value="{{style.SID}}"> </td>
-													<td> {{ style.SName }} </td>
-									{% endfor %}
-								</tr>
-
-            </table>
-            <input type="submit" value="送出">
-        </form>
-
-
-		</div>
-
-
-
-		<div>
-			<table>
-
-		  		<tr>
-			    		<th>Song</th>
-			    		<th>Language</th>
-			    		<th>Version</th>
-							<th>Composer</th>
-							<th>Key</th>
-							<th>Style</th>
-							<th>Vocalist</th>
-							<th>Instrumentalist</th>
-		  		</tr>
-					{% for song in Song_list %}
-		  		<tr>
-						<th>{{ song.SName }}</th>
-						<th>{{ song.Language }}</th>
-						<th>{{ song.Verion }}</th>
-						<th>{{ song.Composer }}</th>
-						<th>{{ song.Key }}</th>
-						<th>{% for style in song.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
-						<th>{% for style in song.vocalist_set.all %}{{ style.VName }}&nbsp&nbsp{% endfor %}</th>
-						<th>{% for style in song.instrumentalist_set.all %}{{ style.IName }}&nbsp&nbsp{% endfor %}</th>
-		  		</tr>
-
-				{% endfor %}
-			</table>
-
-
-
-		</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 	</body>
 </html>

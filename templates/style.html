@@ -13,6 +13,24 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/demo.css" />
 		<link rel="stylesheet" type="text/css" href="/static/css/component.css" />
 		<script src="/static/js/modernizr.custom.js"></script>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<style>
+		* {
+		  box-sizing: border-box;
+		}
+		/* Create two equal columns that floats next to each other */
+		.column {
+		  float: left;
+		  width: 50%;
+		  padding: 10px;
+		}
+		/* Clear floats after the columns */
+		.row:after {
+		  content: "";
+		  display: table;
+		  clear: both;
+		}
+		</style>
 	</head>
 	<body>
 		<div class="container">
@@ -31,9 +49,68 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
+				<li><a href="/">Home</a></li>
+				<li></li>
 			</ul>
 			<header>
-				<h1>Style</h1>
+				<div>
+					<div><h1>Style</h1></div>
+					<div class = "column">
+					<h2>Filter</h2>
+					<p></p>
+					<form action="" method="get">
+				        <table>
+				            {% for style in Style_list %}
+				                <tr>
+				                    <td> <input type="radio" name="id" value="{{style.SID}}"> </td>
+				                    <td> {{ style.SName }} </td>
+				                </tr>
+				            {% endfor %}
+				        </table>
+				        <p></p>
+		        		<input type="submit" value="Submit">
+		    		</form>
+		    		<br>
+		    		<h2>Insert</h2>
+		    		<p></p>
+					<form action="" method="get">
+			            <table>
+			                <tr>
+			                    <td> <label for="song">Name: </label> </td>
+			                    <td> <input type="text" id="song" type="text" name="song"> </td>
+			                </tr>
+			                <tr>
+			                    <td> <label for="lan">Language: </label> </td>
+			                    <td> <input type="text" id="lan" type="text" name="lan"> </td>
+			                </tr>
+			                <tr>
+			                    <td> <label for="comp">Composer: </label> </td>
+			                    <td> <input type="text" id="comp" type="text" name="comp"></td>
+			                </tr>
+			            </table>
+			            <p></p>
+			            <input type="submit" value="Submit">
+			            <br><br>
+			            <h2>Search</h2>
+			            <form action="" method="get">
+							<input type="text" name="search">
+						</form>
+		        	</form>
+		        	</div>
+		        	<div class = "column">
+		        	<h2>Songs</h2>
+		        	<p></p>
+					{% for song in Song_list %}
+					    <div>
+							Song:
+					    {{ song.SName }}
+							<span>Composer:
+							{{ song.Composer }}</span>
+
+					    </div>
+					{% endfor %}
+					</div>
+				</div>
 			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
@@ -41,66 +118,5 @@
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
-		<div>
-
-			<form action="" method="get">
-        <table>
-            {% for style in Style_list %}
-                <tr>
-                    <td> <input type="radio" name="id" value="{{style.SID}}"> </td>
-                    <td> {{ style.SName }} </td>
-                </tr>
-            {% endfor %}
-        </table>
-        <input type="submit" value="送出">
-      </form>
-
-			<form action="" method="get">
-				<select onchange="this.form.submit()">
-					{% for style in Style_list %}
-		                <tr>
-		                    <td> <option name="id2" value="{{style.SID}}"> </td>
-		                    <td> {{ style.SName }} </td>
-		                </tr>
-		            {% endfor %}
-				</select>
-    		</form>
-
-			<form action="" method="get">
-				<input type="text" name="search">
-				<button type="submit">Search</button>
-			</form>
-
-			<form action="" method="get">
-            <table>
-                <tr>
-                    <td> <label for="song">歌曲名字: </label> </td>
-                    <td> <input type="text" id="song" type="text" name="song"> </td>
-                </tr>
-                <tr>
-                    <td> <label for="lan">語言: </label> </td>
-                    <td> <input type="text" id="lan" type="text" name="lan"> </td>
-                </tr>
-                <tr>
-                    <td> <label for="comp">作曲家: </label> </td>
-                    <td>
-                        <input type="text" id="comp" type="text" name="comp"></td>
-                </tr>
-            </table>
-            <input type="submit" value="送出">
-        </form>
-
-			{% for song in Song_list %}
-			    <div>
-					Song:
-			    {{ song.SName }}
-					<span>Composer:
-					{{ song.Composer }}
-
-			    </div>
-			{% endfor %}
-
-
-	</div>
 	</body>
 </html>
