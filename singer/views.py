@@ -20,8 +20,25 @@ def song(request):
         return render(request, 'song.html', {'Song_list': S_Song_list, 'Style_list': Style_list})
 
     elif 'sName' in request.GET:
-         S_Song_list = Song.objects.create(SName=request.GET['sName'], Language=request.GET['lan'], Composer=request.GET['comp'])
-         return render(request, 'song.html', {'Song_list': S_Song_list, 'Style_list': Style_list})
+         nsong = Song.objects.create(SName=request.GET['sName'], Language=request.GET['lan'], Composer=request.GET['comp'])
+         if 'nstyle' in request.GET:
+             q = request.GET['nstyle']
+             try:
+                 ostyle = Style.objects.get(SName=q)
+             except Style.DoesNotExist:
+                 ostyle = Style.objects.create(SName=q)
+             ostyle.song_set.add(nsong)
+
+         if 'voc' in request.GET:
+             q = request.GET['voc']
+             try:
+                 voc = Vocalist.objects.get(VName=q)
+             except Vocalist.DoesNotExist:
+                 voc = Vocalist.objects.create(VName=q)
+
+             nsong.vocalist_set.add(voc)
+
+         return render(request, 'song.html', {'Song_list': Song_list, 'Style_list': Style_list})
 
     else:
         return render(request, 'song.html', {'Song_list': Song_list, 'Style_list': Style_list})
