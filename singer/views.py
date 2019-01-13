@@ -41,7 +41,7 @@ def style(request):
 
     elif 'search' in request.GET:
         q = request.GET['search']
-        S_Song_list = Song.objects.filter(SName__icontains=q)|Song.objects.filter(Composer__icontains=q)|Style.objects.filter(SName__icontains=q)[0].song_set.all()
+        S_Song_list = Song.objects.filter(SName__icontains=q)|Song.objects.filter(Composer__icontains=q)|#Style.objects.filter(SName__icontains=q)[0].song_set.all()
         return render(request, 'style.html', {'Song_list': S_Song_list, 'Style_list': Style_list})
 
     elif 'song' in request.GET:
@@ -52,7 +52,14 @@ def style(request):
         return render(request, 'style.html', {'Song_list': Song_list, 'Style_list': Style_list})
 
 def performance(request):
-    return render(request, 'performance.html')
+    Per_list = Performance.objects.all()
+    if 'search' in request.GET:
+        q = request.GET['search']
+        S_Song_list = Performance.objects.filter(PName__icontains=q)|Performance.objects.filter(Company__icontains=q)|Performance.objects.filter(Venue__icontains=q)|Performance.objects.filter(Equipment__icontains=q)
+        return render(request, 'performance.html', {'Per_list': S_Song_list})
+
+    else:
+        return render(request, 'performance.html', {'Per_list': Per_list})
 
 def vocalist(request):
     return render(request, 'vocalist.html')

@@ -2,8 +2,8 @@
 <html lang="en" class="no-js">
 	<head>
 		<meta charset="UTF-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
-		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<title>Singer Database</title>
 		<meta name="description" content="A sidebar menu as seen on the Google Nexus 7 website" />
 		<meta name="keywords" content="google nexus 7 menu, css transitions, sidebar, side menu, slide out menu" />
@@ -33,13 +33,69 @@
 				</li>
 			</ul>
 			<header>
-				<h1>Singer Database</h1>	
-			</header> 
+				<h1>Singer Database</h1>
+			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
 		<script src="/static/js/gnmenu.js"></script>
 		<script>
 			new gnMenu( document.getElementById( 'gn-menu' ) );
 		</script>
+
+		<form action="" method="get">
+			<input type="text" name="search">
+			<button type="submit">Search</button>
+		</form>
+
+
+
+		<div>
+			<table>
+
+		  		<tr>
+			    		<th>Performance</th>
+			    		<th>Date</th>
+			    		<th>Company</th>
+							<th>Venue</th>
+							<th>Equipment</th>
+							<th>Style</th>
+		  		</tr>
+					{% for per in Per_list %}
+		  		<tr>
+						<th>{{ per.PName }}</th>
+						<th>{{ per.Date }}</th>
+						<th>{{ per.Company }}</th>
+						<th>{{ per.Venue }}</th>
+						<th>{{ per.Equipment }}</th>
+						<th>{% for style in per.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+		  		</tr>
+
+				{% endfor %}
+			</table>
+
+
+
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	</body>
 </html>
