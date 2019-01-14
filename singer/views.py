@@ -95,4 +95,11 @@ def vocalist(request):
     
 
 def instrumentalist(request):
-    return render(request, 'instrumentalist.html')
+    Ins_list = Instrumentalist.objects.all()
+    if 'search' in request.GET:
+        q = request.GET['search']
+        S_Song_list = Instrumentalist.objects.filter(IName__icontains=q)|Instrumentalist.objects.filter(Gender__icontains=q)|Instrumentalist.objects.filter(Instrument__icontains=q)|Instrumentalist.objects.filter(Music_Training__icontains=q)
+        return render(request, 'instrumentalist.html', {'Ins_list': S_Song_list})
+
+    else:
+        return render(request, 'instrumentalist.html', {'Ins_list': Ins_list})

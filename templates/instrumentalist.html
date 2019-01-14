@@ -31,9 +31,38 @@
 						</div><!-- /gn-scroller -->
 					</nav>
 				</li>
+				<li><a href="/">Home</a></li>
+				<li></li>
 			</ul>
 			<header>
-				<h1>Singer Database</h1>	
+				<h1>Instrumentalist</h1>
+				<h2>Search</h2>
+			     <form action="" method="get">
+						<input type="text" name="search">
+				</form>
+				<div>
+					<table>
+				  		<tr>
+				    		<th><h3>Instrumentalist</h3></th>
+				    		<th><h3>Gender</h3></th>
+				    		<th><h3>Instrument</h3></th>
+							<th><h3>Music_Training</h3></th>
+							<th><h3>Song</h3></th>
+							<th><h3>Style</h3></th>
+				  		</tr>
+							{% for ins in Ins_list %}
+				  		<tr>
+							<th>{{ ins.IName }}</th>
+							<th>{{ ins.Gender }}</th>
+							<th>{{ ins.Instrument }}</th>
+							<th>{{ ins.Music_Training }}</th>
+							<th>{% for song in ins.Song.all %}{{ song.SName }}</br>{% endfor %}</th>
+							<th>{% for style in ins.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+				  		</tr>
+
+						{% endfor %}
+					</table>
+				</div>	
 			</header> 
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
