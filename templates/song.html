@@ -44,7 +44,7 @@
 					</form>
 				</div>
 
-				<div style="float:left; width:50%" id="addT">
+				<div style="float:right; width:50%" id="addT">
 					<h2>Add Song</h2>
 					<div style="display:none" id="add">
 						<form action="" method="get">
@@ -66,7 +66,7 @@
 				                    <td> <input type="text" id="comp" type="text" name="comp"></td>
 				                </tr>
 				                <tr>
-				                    <td> <label for="key">Key: </label> </td>
+				                    <td> <label for="key">Tonality: </label> </td>
 				                    <td> <input type="text" id="key" type="text" name="key"></td>
 				                </tr>
 				                <tr>
@@ -95,7 +95,7 @@
 				    		<th><h3>Language</h3></th>
 				    		<th><h3>Version</h3></th>
 							<th><h3>Composer</h3></th>
-							<th><h3>Key</h3></th>
+							<th><h3>Tonality</h3></th>
 							<th><h3>Style</h3></th>
 							<th><h3>Vocalist</h3></th>
 							<th><h3>Instrumentalist</h3></th>
@@ -106,7 +106,7 @@
 							<th>{{ song.Language }}</th>
 							<th>{{ song.Verion }}</th>
 							<th>{{ song.Composer }}</th>
-							<th>{{ song.Key }}</th>
+							<th>{{ song.Tonality }}</th>
 							<th>{% for style in song.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
 							<th>{% for style in song.vocalist_set.all %}{{ style.VName }}&nbsp&nbsp{% endfor %}</th>
 							<th>{% for style in song.instrumentalist_set.all %}{{ style.IName }}&nbsp&nbsp{% endfor %}</th>
