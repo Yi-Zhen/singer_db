@@ -48,77 +48,72 @@
 					<h2>Add Song</h2>
 					<div style="display:none" id="add">
 						<form action="" method="get">
-					            <table>
-					                <tr>
-					                    <td> <label for="sName">Name: </label> </td>
-					                    <td> <input type="text" id="sName" type="text" name="sName"> </td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="lan">Language: </label> </td>
-					                    <td> <input type="text" id="lan" type="text" name="lan"> </td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="ver">Version: </label> </td>
-					                    <td> <input type="text" id="ver" type="text" name="ver"></td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="comp">Composer: </label> </td>
-					                    <td> <input type="text" id="comp" type="text" name="comp"></td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="key">Key: </label> </td>
-					                    <td> <input type="text" id="key" type="text" name="key"></td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="nstyle">Style: </label> </td>
-					                    <td> <input type="text" id="nstyle" type="text" name="nstyle"></td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="voc">Vocalist: </label> </td>
-					                    <td> <input type="text" id="voc" type="text" name="voc"></td>
-					                </tr>
-					                <tr>
-					                    <td> <label for="instru">Instrumentalist: </label> </td>
-					                    <td> <input type="text" id="instru" type="text" name="instru"></td>
-					                </tr>
-					            </table>
-					            <p></p>
-					            <input type="submit" value="Submit">
-				        	</form>
+				            <table>
+				                <tr>
+				                    <td> <label for="sName">Name: </label> </td>
+				                    <td> <input type="text" id="sName" type="text" name="sName"> </td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="lan">Language: </label> </td>
+				                    <td> <input type="text" id="lan" type="text" name="lan"> </td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="ver">Version: </label> </td>
+				                    <td> <input type="text" id="ver" type="text" name="ver"></td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="comp">Composer: </label> </td>
+				                    <td> <input type="text" id="comp" type="text" name="comp"></td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="key">Key: </label> </td>
+				                    <td> <input type="text" id="key" type="text" name="key"></td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="nstyle">Style: </label> </td>
+				                    <td> <input type="text" id="nstyle" type="text" name="nstyle"></td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="voc">Vocalist: </label> </td>
+				                    <td> <input type="text" id="voc" type="text" name="voc"></td>
+				                </tr>
+				                <tr>
+				                    <td> <label for="instru">Instrumentalist: </label> </td>
+				                    <td> <input type="text" id="instru" type="text" name="instru"></td>
+				                </tr>
+				            </table>
+				        <p></p>
+				        <input type="submit" value="Submit">
+			        	</form>
 					</div>
-
 				</div>
-
-<!----
-
-		-->
-		<div>
-			<table>
-				<br>
-		  		<tr>
-		    		<th><h3>Song</h3></th>
-		    		<th><h3>Language</h3></th>
-		    		<th><h3>Version</h3></th>
-					<th><h3>Composer</h3></th>
-					<th><h3>Key</h3></th>
-					<th><h3>Style</h3></th>
-					<th><h3>Vocalist</h3></th>
-					<th><h3>Instrumentalist</h3></th>
-		  		</tr>
-					{% for song in Song_list %}
-		  		<tr>
-					<th>{{ song.SName }}</th>
-					<th>{{ song.Language }}</th>
-					<th>{{ song.Verion }}</th>
-					<th>{{ song.Composer }}</th>
-					<th>{{ song.Key }}</th>
-					<th>{% for style in song.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
-					<th>{% for style in song.vocalist_set.all %}{{ style.VName }}&nbsp&nbsp{% endfor %}</th>
-					<th>{% for style in song.instrumentalist_set.all %}{{ style.IName }}&nbsp&nbsp{% endfor %}</th>
-		  		</tr>
-				{% endfor %}
-			</table>
-		</div>
+				<div>
+					<table>
+						<br>
+				  		<tr>
+				    		<th><h3>Song</h3></th>
+				    		<th><h3>Language</h3></th>
+				    		<th><h3>Version</h3></th>
+							<th><h3>Composer</h3></th>
+							<th><h3>Key</h3></th>
+							<th><h3>Style</h3></th>
+							<th><h3>Vocalist</h3></th>
+							<th><h3>Instrumentalist</h3></th>
+				  		</tr>
+							{% for song in Song_list %}
+				  		<tr>
+							<th>{{ song.SName }}</th>
+							<th>{{ song.Language }}</th>
+							<th>{{ song.Verion }}</th>
+							<th>{{ song.Composer }}</th>
+							<th>{{ song.Key }}</th>
+							<th>{% for style in song.Style.all %}{{ style.SName }}&nbsp&nbsp{% endfor %}</th>
+							<th>{% for style in song.vocalist_set.all %}{{ style.VName }}&nbsp&nbsp{% endfor %}</th>
+							<th>{% for style in song.instrumentalist_set.all %}{{ style.IName }}&nbsp&nbsp{% endfor %}</th>
+				  		</tr>
+						{% endfor %}
+					</table>
+				</div>
 			</header>
 		</div><!-- /container -->
 		<script src="/static/js/classie.js"></script>
